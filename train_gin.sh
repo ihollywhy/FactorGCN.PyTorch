@@ -1,0 +1,32 @@
+python train_gin.py --dataset IMDBBINARY --fold-idx 0 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0001
+python train_gin.py --dataset IMDBBINARY --fold-idx 1 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0002
+python train_gin.py --dataset IMDBBINARY --fold-idx 2 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0003
+python train_gin.py --dataset IMDBBINARY --fold-idx 3 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0004
+python train_gin.py --dataset IMDBBINARY --fold-idx 4 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0005
+python train_gin.py --dataset IMDBBINARY --fold-idx 5 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0006
+python train_gin.py --dataset IMDBBINARY --fold-idx 6 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0007
+python train_gin.py --dataset IMDBBINARY --fold-idx 7 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0008
+python train_gin.py --dataset IMDBBINARY --fold-idx 8 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0009
+python train_gin.py --dataset IMDBBINARY --fold-idx 9 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0010
+
+python train_gin.py --dataset COLLAB --fold-idx 0 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0001
+python train_gin.py --dataset COLLAB --fold-idx 1 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0002
+python train_gin.py --dataset COLLAB --fold-idx 2 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0003
+python train_gin.py --dataset COLLAB --fold-idx 3 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0004
+python train_gin.py --dataset COLLAB --fold-idx 4 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0005
+python train_gin.py --dataset COLLAB --fold-idx 5 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0006
+python train_gin.py --dataset COLLAB --fold-idx 6 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0007
+python train_gin.py --dataset COLLAB --fold-idx 7 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0008
+python train_gin.py --dataset COLLAB --fold-idx 8 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0009
+python train_gin.py --dataset COLLAB --fold-idx 9 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0010
+
+python train_gin.py --dataset MUTAG --fold-idx 0 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0001
+python train_gin.py --dataset MUTAG --fold-idx 1 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0002
+python train_gin.py --dataset MUTAG --fold-idx 2 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0003
+python train_gin.py --dataset MUTAG --fold-idx 3 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0004
+python train_gin.py --dataset MUTAG --fold-idx 4 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0005
+python train_gin.py --dataset MUTAG --fold-idx 5 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0006
+python train_gin.py --dataset MUTAG --fold-idx 6 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0007
+python train_gin.py --dataset MUTAG --fold-idx 7 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0008
+python train_gin.py --dataset MUTAG --fold-idx 8 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0009
+python train_gin.py --dataset MUTAG --fold-idx 9 --dis-weight 0.5 --in-drop 0.4 --seed 0 --gpu 0 --log-subdir run0010
