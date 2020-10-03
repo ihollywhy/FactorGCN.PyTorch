@@ -5,6 +5,7 @@ from dgl import DGLGraph
 import networkx as nx
 from .generate_synthetic import synthetic_graph_cls
 from .zinc_dataset import MoleculeDatasetDGL
+from .pattern_dataset import SBMsDatasetDGL
 import numpy as np
 
 
@@ -20,6 +21,10 @@ def load_dataset(args=None, dataset=None):
     elif dataset_name == 'zinc':
         zinc_data = MoleculeDatasetDGL()
         return zinc_data
+    elif 'sbms' in dataset_name:
+        name = dataset_name.split('_')[-1]
+        sbms_dataset = SBMsDatasetDGL(name)
+        return sbms_dataset
     else:
         raise NameError(f'unknow dataset name {dataset_name}')
 

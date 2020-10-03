@@ -2,13 +2,15 @@ import torch.nn.functional as F
 import torch
 from .factorgnn import FactorGNN, FactorGNNPool
 from .factorgnn_zinc import FactorGNNZinc
+from .factorgnn_pattern import FactorGNNSBMs
 from .mlp import MLP, MLPPool
 from .mlp_zinc import MLPZinc
 from .gat import GAT, GATPool
 from .gat_zinc import GATZinc
+from .gat_pattern import GATSBMs
 from .gcn import GCNPool
 from .gcn_zinc import GCNZinc
-from .disengcn import DisenGCN, DisenGCNPool, DisenGCNZinc
+from .disengcn import DisenGCN, DisenGCNPool, DisenGCNZinc, DisenGCNSBMs
 import numpy as np
 
 
@@ -19,6 +21,8 @@ def get_model(dataset, args, mode = "multiclass"):
         model = get_model_multilabel(dataset, args)
     elif mode == "zinc":
         model = get_zinc_model(dataset, args)
+    elif mode == 'sbms':
+        model = get_sbms_model(dataset, args)
     else:
         raise ValueError(f"Unknown mode: {mode}")
     return model
@@ -132,4 +136,24 @@ def get_model_multiclass(dataset, args):
                     args.residual)
     else:
         raise ValueError(f"unknow model name: {args.model_name}")
+    return model
+
+
+def get_sbms_model(dataset, args):
+    g, features, labels, train_mask, val_mask, test_mask, factor_graphs = dataset
+    n_classes = 2
+    if args.model_name == 'FactorGNN':
+        model = FactorGNNSBMs(g, args.num_layers, args.in_dim, args.num_hidden,
+                            args.num_latent, args.in_drop, args.residual, n_classes)
+    elif args.model_name == 'GAT':
+        heads = ([args.num_heads] * args.num_layers) + [args.num_out_heads]
+        model = GATSBMs(g, args.num_layers, args.in_dim, args.num_hidden,
+                        heads, F.elu, args.in_drop, args.attn_drop, args.negative_slope,
+                        args.residual)
+    elif args.model_name == 'DisenGCN':
+        model = DisenGCNSBMs(args.in_dim, 1,
+                            args, split_mlp=False)
+    else:
+        raise NameError(f'unknow format of model name: {args.model_name}')
+    
     return model

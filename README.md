@@ -13,7 +13,7 @@ about how to install the dependencies.
 
 ### Datasets
 
-We provide [here](https://drive.google.com/file/d/1WeSVyzftUCcLm6q_U-g5Wzka5WUB-TIy/view?usp=sharing) 
+We provide [here](https://drive.google.com/drive/folders/1a5i3_S-22wFjp5NIL9WxoMvaUwUE0NLQ?usp=sharing) 
 datasets that are ready to use
 within this project.
 Download the datasets and unzip it into
@@ -45,6 +45,8 @@ The `train_*.sh` scripts contains the training codes for corresponding datasets 
 > **train_zinc.sh** for ZINC dataset;
 
 > **train_gin.sh** for IMDB-B, COLLAB, and MUTAG datasets.
+
+> **train_pattern.sh** for pattern datasets.
 
 The model as well as the training log
 will be saved to the corresponding dir in **./data** for evaluation.

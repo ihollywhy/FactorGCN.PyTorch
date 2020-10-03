@@ -1,0 +1,1 @@
+python train_pattern.py --dataset sbms_pattern --gpu 0 --model-name FactorGNN --dis-weight 0.2 --num-latent 4 --num-hidden 144 --seed 0 --log-subdir run0001 --lr 0.001

@@ -223,6 +223,77 @@ class DisenGCNZinc(nn.Module):
         return self.gs
 
 
+class DisenGCNSBMs(nn.Module):
+    #
+    # nfeat: dimension of a node's input feature
+    # nclass: the number of target classes
+    # hyperpm: the hyper-parameter configuration
+    #    ncaps: the number of capsules/channels/factors per layer
+    #    routit: routing iterations
+    #
+    def __init__(self, nfeat, nclass, hyperpm, split_mlp=False, 
+                n_cls=2):
+        super(DisenGCNSBMs, self).__init__()
+        self.g = None
+        self.BNs = nn.ModuleList()
+
+        # atom_type embedding
+        self.embed = nn.Embedding(200, nfeat)
+
+        self.pca = SparseInputLinear(nfeat, hyperpm.ncaps * hyperpm.nhidden)
+        conv_ls = []
+        for i in range(hyperpm.nlayer):
+            if i >=2:
+                conv = NeibRoutLayer(hyperpm.ncaps//2, hyperpm.routit)
+            else:
+                conv = NeibRoutLayer(hyperpm.ncaps, hyperpm.routit)
+            self.BNs.append(nn.BatchNorm1d(hyperpm.ncaps * hyperpm.nhidden))
+            self.add_module('conv_%d' % i, conv)
+            conv_ls.append(conv)
+        self.conv_ls = conv_ls
+        if split_mlp:
+            self.clf = SplitMLP(nclass, hyperpm.nhidden * hyperpm.ncaps,
+                                nclass)
+        else:
+            # self.clf = nn.Linear(hyperpm.nhidden * hyperpm.ncaps, nclass)
+            hidden_dim = hyperpm.nhidden * hyperpm.ncaps
+            self.classifier1 = nn.Linear(hidden_dim, hidden_dim//2)
+            self.classifier2 = nn.Linear(hidden_dim//2, n_cls)
+        self.dropout = hyperpm.dropout
+
+    def _dropout(self, x):
+        return fn.dropout(x, self.dropout, training=self.training)
+
+    def forward(self, x, e, snorm_n, snorm_e):
+        x = self.embed(x)
+        
+        self.ps = []
+        src_trg = self.g.all_edges()
+        src_trg = tuple((s.unsqueeze(0).cuda() for s in src_trg))
+        src_trg = torch.cat(src_trg, dim=0)
+        x = self._dropout(fn.elu(self.pca(x)))
+        for conv, bn in zip(self.conv_ls, self.BNs):
+            x, p = conv(x, src_trg)
+            x = x * snorm_n
+            x = bn(x)
+            x = self._dropout(fn.elu(x))
+            self.ps.append(p.detach().cpu().numpy())
+        
+        x = self.classifier1(x)
+        x = fn.elu(x)
+        x = self.classifier2(x)
+        return x
+    
+    def get_factor(self):
+        self.gs = []
+        for p in self.ps:
+            g = self.g.local_var()
+            g.edata['a'] = p
+            self.gs.append(g)
+        return self.gs
+
+
+
 # noinspection PyUnresolvedReferences
 class SparseInputLinear(nn.Module):
     def __init__(self, inp_dim, out_dim):
