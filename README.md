@@ -63,8 +63,8 @@ Synthetic dataset;
 
 > **generate_report.get_10fold_curve_report** report the 10-fold cross-validation performance on IMDB-B, COLLAB, and MUTAG datasets.
 
-The performances of disentanglement are evaluted
-based the ![](./asserts/ged_e.gif) and C-score.
+The performances of disentanglement are evaluated
+as ![](./asserts/ged_e.gif) and C-score.
 
 > **ged_eval_synth** generates the disentanglement performance
 on the Synthetic dataset;
