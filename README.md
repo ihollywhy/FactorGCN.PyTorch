@@ -1,6 +1,6 @@
 # PyTorch implementation of FactorGCN
 
-Paper: [Factorizable Graph Convolutional Networks](), NeurIPS'20
+Paper: [Factorizable Graph Convolutional Networks](https://arxiv.org/pdf/2010.05421.pdf), NeurIPS'20
 
 # Dependencies
 
