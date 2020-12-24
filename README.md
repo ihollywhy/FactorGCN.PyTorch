@@ -2,14 +2,18 @@
 
 Paper: [Factorizable Graph Convolutional Networks](https://arxiv.org/pdf/2010.05421.pdf), NeurIPS'20
 
-# Dependencies
+## Method Overview
+
+![](./asserts/overview.jpg)
+
+## Dependencies
 
 See [requirment](requirment.txt) file for more information
 about how to install the dependencies.
 
-# Usage
+## Usage
 
-## 1, Prerequisites
+### 1, Prerequisites
 
 ### Datasets
 
@@ -36,7 +40,7 @@ from
 to
 `return rst, graph.local_var(), graph.edata['a']`
 
-## 2, Training
+### 2, Training
 
 The `train_*.sh` scripts contains the training codes for corresponding datasets and methods. 
 
@@ -51,7 +55,7 @@ The `train_*.sh` scripts contains the training codes for corresponding datasets 
 The model as well as the training log
 will be saved to the corresponding dir in **./data** for evaluation.
 
-## 3, Evaluation
+### 3, Evaluation
 
 The **evaluation** dir contains the codes and examples for evaluating the performance of
 both the task-related performance and the disentanglement performance.
@@ -72,6 +76,18 @@ on the Synthetic dataset;
 > **ged_eval_zinc** generates the disentanglement performance
 on the ZINC dataset.
 
-# License
+## Cite
+
+```
+@article{yang2020factorizable,
+  title={Factorizable Graph Convolutional Networks},
+  author={Yang, Yiding and Feng, Zunlei and Song, Mingli and Wang, Xinchao},
+  journal={Advances in Neural Information Processing Systems},
+  volume={33},
+  year={2020}
+}
+```
+
+## License
 
 FactorGCN is released under the MIT license. Please see the [LICENSE](LICENSE) file for more information.
